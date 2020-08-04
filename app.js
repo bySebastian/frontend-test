@@ -15,8 +15,6 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
 }
 
 function loadTests(tests, driver, url) {
-    console.log(tests);
-
     driver.get(url);
 
     driver.findElement(webdriver.By.name("q")).sendKeys("webdriver");
