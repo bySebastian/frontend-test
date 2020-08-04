@@ -15,22 +15,21 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
 }
 
 function loadTests(tests, driver, url) {
+    const by = webdriver.By;
+    const until = webdriver.until;
+
     driver.get(url);
 
-    driver.findElement(webdriver.By.name("q")).sendKeys("webdriver");
-    
-    driver.sleep(1000).then(() => {
-        driver.findElement(webdriver.By.name("q")).sendKeys(webdriver.Key.ENTER);
-    });
-    
-    driver.sleep(2000).then(() => {
-        driver.getTitle().then((title) => {
-            if (title === "webdriver - Google Search") {
-                console.log("Test passed.");
-            } else {
-                console.log("Test failed.");
-            }
-            driver.quit();
-        });
+    driver.findElement(by.name("q")).sendKeys("webdriver");
+
+    driver.wait(until.elementLocated(by.name("q")), 10000).then((name) => { name.sendKeys(webdriver.Key.ENTER) });
+
+    driver.wait(until.titleContains("webdriver"), 10000).then((value) => {
+        if (value) {
+            console.log("Test passed.");
+        } else {
+            console.log("Test failed.");
+        }
+        driver.quit();
     });
 }
