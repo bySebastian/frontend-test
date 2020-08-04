@@ -4,7 +4,7 @@
   "description": "Test for web projects",
   "main": "index.js",
   "scripts": {
-    "test": "node google_test"
+    "test": "node app"
   },
   "author": "Sebastian Vyaene",
   "license": "MIT",
