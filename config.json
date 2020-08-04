@@ -10,6 +10,9 @@
         }
     ],
     "tests": [
-        "google"
+        {
+            "name": "google",
+            "path": "./src/tests/google"
+        }
     ]
 }
