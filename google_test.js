@@ -1,23 +1,21 @@
-require("geckodriver");
-require("chromedriver");
-
 const webdriver = require("selenium-webdriver");
-const By = webdriver.By;
-const until = webdriver.until;
+const CONFIG = require("./config.json");
 
-const driver_ff = new webdriver.Builder("").forBrowser("firefox").build();
-const driver_chrome = new webdriver.Builder("").forBrowser("chrome").build();
-
-searchTest(driver_ff);
-searchTest(driver_chrome);
+if (CONFIG.browsers && CONFIG.browsers.length) {
+    CONFIG.browsers.map((browser) => {
+        require(browser.driver);
+        const driver = new webdriver.Builder("").forBrowser(browser.name).build();
+        searchTest(driver);
+    });
+}
 
 function searchTest(driver) {
     driver.get("https://www.google.com");
 
-    driver.findElement(By.name("q")).sendKeys("webdriver");
+    driver.findElement(webdriver.By.name("q")).sendKeys("webdriver");
     
     driver.sleep(1000).then(function(){
-        driver.findElement(By.name("q")).sendKeys(webdriver.Key.ENTER);
+        driver.findElement(webdriver.By.name("q")).sendKeys(webdriver.Key.ENTER);
     });
     
     driver.sleep(2000).then(function(){

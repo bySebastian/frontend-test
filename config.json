@@ -1,0 +1,15 @@
+{
+    "browsers": [
+        {
+            "name": "firefox",
+            "driver": "geckodriver"
+        },
+        {
+            "name": "chrome",
+            "driver": "chromedriver"
+        }
+    ],
+    "tests": [
+        "google"
+    ]
+}
