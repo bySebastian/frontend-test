@@ -7,6 +7,7 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
         CONFIG.browsers.map(async (browser) => {
             require(browser.driver);
             const driver = await new webdriver.Builder("").forBrowser(browser.name).build();
+            console.log(`BROWSER ${browser.name}`);
 
             try {
                 // 1. Load URL
