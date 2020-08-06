@@ -9,16 +9,17 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
             const driver = new webdriver.Builder("").forBrowser(browser.name).build();
 
             // 1. Load URL
-            driver.get(url);
+            driver.get(url[0]);
 
             // 2. Load tests
             if (CONFIG.tests && CONFIG.tests.length) {
                 CONFIG.tests.map(test => {
-                    require(test.path)(webdriver,driver).then(value => {
+                    require(test.path)(webdriver,driver).then(results => {
                         // TO DO
-                        console.log("result", value);
+                        console.log(`Test ${test.name} completed.`);
+                        console.log(results);
                     }, error => {
-                        console.log(`Test Failed: ${error}`);
+                        console.log(`Test ${test.name} failed: ${error}`);
                     });
                 });
             } else {
@@ -26,7 +27,7 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
             }
 
             // 3. Quit driver
-            driver.quit();
+            //driver.quit();
         });
     } else {
         console.log("ERROR. URL parameter is missing.");
