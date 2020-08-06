@@ -4,30 +4,36 @@ const url = process.argv.slice(2);
 
 if (CONFIG.browsers && CONFIG.browsers.length) {
     if (url && url.length) {
-        CONFIG.browsers.map((browser) => {
+        CONFIG.browsers.map(async (browser) => {
             require(browser.driver);
-            const driver = new webdriver.Builder("").forBrowser(browser.name).build();
+            const driver = await new webdriver.Builder("").forBrowser(browser.name).build();
 
-            // 1. Load URL
-            driver.get(url[0]);
+            try {
+                // 1. Load URL
+                await driver.get(url[0]);
 
-            // 2. Load tests
-            if (CONFIG.tests && CONFIG.tests.length) {
-                CONFIG.tests.map(test => {
-                    require(test.path)(webdriver,driver).then(results => {
-                        // TO DO
-                        console.log(`Test ${test.name} completed.`);
-                        console.log(results);
-                    }, error => {
-                        console.log(`Test ${test.name} failed: ${error}`);
+                // 2. Load tests
+                if (CONFIG.tests && CONFIG.tests.length) {
+                    CONFIG.tests.map(async (test) => {
+                        try {
+                            await require(test.path)(webdriver,driver).then(result => {
+                                console.log(`Test ${test.name}: ${result}`);
+                            });
+                        } catch(error) {
+                            console.log(`Test ${test.name} failed: ${error}`);
+                        }
                     });
-                });
-            } else {
-                console.log("ERROR. No tests available.");
+                } else {
+                    console.log("ERROR. No tests available.");
+                }
             }
-
-            // 3. Quit driver
-            //driver.quit();
+            catch(error) {
+                console.log(`Error. ${error}`);
+            }
+            finally {
+                // 3. Quit driver
+                // await driver.quit();
+            }
         });
     } else {
         console.log("ERROR. URL parameter is missing.");
