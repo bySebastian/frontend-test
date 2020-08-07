@@ -5,16 +5,18 @@ const url = process.argv.slice(2);
 if (CONFIG.browsers && CONFIG.browsers.length) {
     if (url && url.length) {
         CONFIG.browsers.map(async (browser) => {
-            require(browser.driver);
-            const driver = await new webdriver.Builder("").forBrowser(browser.name).build();
-            console.log(`BROWSER ${browser.name}`);
-
             try {
-                // 1. Load URL
+                // 1. Load browser
+                require(browser.driver);
+                const driver = await new webdriver.Builder("").forBrowser(browser.name).build();
+                console.log(`BROWSER ${browser.name}`);
+
+                // 2. Load URL
                 await driver.get(url[0]);
 
-                // 2. Load tests
-                if (CONFIG.tests && CONFIG.tests.length) {
+                // 3. Load tests
+                if (CONFIG.tests && CONFIG.tests.
+                    length) {
                     CONFIG.tests.map(async (test) => {
                         try {
                             await require(test.path)(webdriver,driver).then(result => {
@@ -27,13 +29,12 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
                 } else {
                     console.log("ERROR. No tests available.");
                 }
+
+                // 4. Quit driver
+                // await driver.quit();
             }
             catch(error) {
                 console.log(`Error. ${error}`);
-            }
-            finally {
-                // 3. Quit driver
-                // await driver.quit();
             }
         });
     } else {
