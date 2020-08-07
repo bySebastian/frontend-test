@@ -17,13 +17,11 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
                 // 3. Load tests
                 if (CONFIG.tests && CONFIG.tests.length) {
                     CONFIG.tests.map(async (test) => {
-                        try {
-                            await require(test.path)(webdriver,driver).then(result => {
-                                console.log(`Test ${test.name}: ${result}`);
-                            });
-                        } catch(error) {
+                        await require(test.path)(webdriver,driver).then(result => {
+                            console.log(`Test ${test.name}: ${result}`);
+                        }, error => {
                             console.log(`Test ${test.name} failed: ${error}`);
-                        }
+                        });
                     });
                 } else {
                     console.log("ERROR. No tests available.");
