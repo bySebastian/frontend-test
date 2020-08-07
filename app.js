@@ -1,4 +1,4 @@
-const webdriver = require("selenium-webdriver");
+const { Builder, By, Key, until } = require("selenium-webdriver");
 const CONFIG = require("./config.json");
 const url = process.argv.slice(2);
 
@@ -8,7 +8,7 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
             try {
                 // 1. Load browser
                 require(browser.driver);
-                const driver = await new webdriver.Builder("").forBrowser(browser.name).build();
+                const driver = await new Builder("").forBrowser(browser.name).build();
                 console.log(`BROWSER ${browser.name}`);
 
                 // 2. Load URL
@@ -17,7 +17,7 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
                 // 3. Load tests
                 if (CONFIG.tests && CONFIG.tests.length) {
                     CONFIG.tests.map(async (test) => {
-                        await require(test.path)(webdriver,driver).then(result => {
+                        await require(test.path)(By, Key, until, driver).then(result => {
                             console.log(`Test ${test.name}: ${result}`);
                         }, error => {
                             console.log(`Test ${test.name} failed: ${error}`);
