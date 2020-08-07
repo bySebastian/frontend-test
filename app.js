@@ -15,8 +15,7 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
                 await driver.get(url[0]);
 
                 // 3. Load tests
-                if (CONFIG.tests && CONFIG.tests.
-                    length) {
+                if (CONFIG.tests && CONFIG.tests.length) {
                     CONFIG.tests.map(async (test) => {
                         try {
                             await require(test.path)(webdriver,driver).then(result => {
