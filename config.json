@@ -12,11 +12,11 @@
     "tests": [
         {
             "name": "google",
-            "path": "./tests/custom/google"
+            "path": "../tests/custom/google"
         },
         {
             "name": "alt",
-            "path": "./tests/wcag20A/alt"
+            "path": "../tests/wcag20A/alt"
         }
     ]
 }
