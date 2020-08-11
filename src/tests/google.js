@@ -1,10 +1,10 @@
-module.exports = async (By, Key, until, driver) => {    
-    const searchField = await driver.findElement(By.name("q"));
+module.exports = async (webdriver, driver) => {    
+    const searchField = await driver.findElement(webdriver.By.name("q"));
     searchField.sendKeys("webdriver");
 
-    driver.wait(until.elementLocated(By.name("q")), 10000).then((name) => { name.sendKeys(Key.ENTER) });
+    driver.wait(webdriver.until.elementLocated(webdriver.By.name("q")), 10000).then((name) => { name.sendKeys(webdriver.Key.ENTER) });
     
-    const isCorrectTitle = await until.titleContains("webdriver"); 
+    const isCorrectTitle = await webdriver.until.titleContains("webdriver"); 
 
     return Promise.all([isCorrectTitle ? "Tests passed." : "Tests failed."]);
 };
