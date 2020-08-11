@@ -1,4 +1,4 @@
-module.exports = async (webdriver, driver) => {    
+async function Google(webdriver, driver) {    
     const searchField = await driver.findElement(webdriver.By.name("q"));
     searchField.sendKeys("webdriver");
 
@@ -8,3 +8,5 @@ module.exports = async (webdriver, driver) => {
 
     return Promise.all([isCorrectTitle ? "Tests passed." : "Tests failed."]);
 };
+
+module.exports = Google;
