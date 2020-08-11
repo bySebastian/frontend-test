@@ -1,9 +1,8 @@
 async function Alt (webdriver, driver){
 
-    const searchField = await driver.findElement(webdriver.By.name("q"));
-    console.log("q", searchField);
+    const imgFields = await driver.findElement(webdriver.By.tagName("img"));
 
-    return Promise.all([searchField]);
+    return Promise.all([imgFields]);
 };
 
 module.exports = Alt;
