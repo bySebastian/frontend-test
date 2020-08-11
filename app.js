@@ -1,4 +1,4 @@
-const Test = require("./lib/test");
+const getTest = require("./lib/test");
 const CONFIG = require("./config.json");
 const url = process.argv.slice(2)[0];
 
@@ -7,9 +7,10 @@ if (CONFIG.browsers && CONFIG.browsers.length) {
         CONFIG.browsers.map((browser) => {
             if (CONFIG.tests && CONFIG.tests.length) {
                 CONFIG.tests.map(async (testItem) => {
-                    await Test(browser, url, testItem).then(result => {
-                        console.log("result", result);
+                    const result = await getTest(browser, url, testItem).then(value => {
+                        return value;
                     });
+                    console.log("result", result);
                 });
             } else {
                 console.log("ERROR. No tests available.");
