@@ -12,7 +12,7 @@
     "tests": [
         {
             "name": "google",
-            "path": "./src/tests/google"
+            "path": "./tests/custom/google"
         }
     ]
 }
