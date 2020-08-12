@@ -1,22 +1,22 @@
 {
     "browsers": [
         {
-            "name": "firefox",
+            "name": "Firefox",
             "driver": "geckodriver"
         },
         {
-            "name": "chrome",
+            "name": "Chrome",
             "driver": "chromedriver"
         }
     ],
     "tests": [
         {
             "name": "google",
-            "path": "../tests/custom/google"
+            "path": "../tests/custom/google.test"
         },
         {
             "name": "alt",
-            "path": "../tests/wcag20A/alt"
+            "path": "../tests/wcag20A/alt.test"
         }
     ]
 }
