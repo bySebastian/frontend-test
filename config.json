@@ -1,11 +1,11 @@
 {
     "browsers": [
         {
-            "name": "Firefox",
+            "name": "firefox",
             "driver": "geckodriver"
         },
         {
-            "name": "Chrome",
+            "name": "chrome",
             "driver": "chromedriver"
         }
     ],
