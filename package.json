@@ -1,16 +1,26 @@
 {
-  "name": "selenium-test",
+  "name": "frontend-test",
   "version": "0.0.1",
-  "description": "Test for web projects",
+  "license": "MIT",
+  "description": "Front-end Test Kit",
+  "repository": "git@github.com:bySebastian/frontend-test.git",
   "main": "index.js",
   "scripts": {
+    "build": "./node_modules/.bin/webpack --config ./webpack/webpack.config.js",
     "test": "node app"
   },
   "author": "Sebastian Vyaene",
-  "license": "MIT",
   "dependencies": {
     "geckodriver": "1.20.0",
     "chromedriver": "84.0.0",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "iedriver": "3.14.2",
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "babel-loader": "8.1.0",
+    "webpack": "4.44.1",
+    "path": "0.12.7"
+  },
+  "engines": {
+    "node": "10.x",
+    "nmp": "6.x"
   }
 }
