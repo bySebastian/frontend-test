@@ -1,6 +1,6 @@
-const webdriver = require("selenium-webdriver");
+import webdriver from "selenium-webdriver"; 
 
-async function Test (browser, url, test) {
+export async const Test = (browser, url, test) => {
 
     // 1. Load browser
     require(browser.driver);
@@ -31,5 +31,3 @@ async function Test (browser, url, test) {
 
     return Promise.all(result)
 };
-
-module.exports = Test;

@@ -2,10 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    entry: "./app.js",
+    entry: "./src/Index.js",
+    target: "node",
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: "app.bundle.js"
+        path: path.join(__dirname, 'dist'),
+        filename: "App.bundle.js"
     },
     module: {
         rules: [
@@ -15,7 +16,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["es2015"]
+                        presets: ["@babel/env", "@babel/react"]
                     }
                 },
             }

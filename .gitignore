@@ -1,7 +1,7 @@
 
 # build files/folders
-/dist/
-/dist/*
+# /dist/
+# /dist/*
 
 # packages
 /node_modules/
