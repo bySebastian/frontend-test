@@ -7,9 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
-    "webpack": "webpack",
-    "test": "build node app"
+    "build": "webpack --mode production"
   },
   "author": "Sebastian Vyaene",
   "engines": {
