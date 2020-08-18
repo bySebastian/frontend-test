@@ -6,10 +6,25 @@
   "repository": "git@github.com:bySebastian/frontend-test.git",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode production",
     "webpack": "webpack",
     "test": "build node app"
   },
   "author": "Sebastian Vyaene",
+  "engines": {
+    "node": "10.x",
+    "nmp": "6.x"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "html-loader": "^1.2.0",
+    "html-webpack-plugin": "^4.3.0"
+  },
   "dependencies": {
     "geckodriver": "^1.20.0",
     "chromedriver": "^84.0.0",
@@ -17,16 +32,6 @@
     "selenium-webdriver": "^4.0.0-alpha.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "babel-loader": "^8.1.0",
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
     "path": "^0.12.7"
-  },
-  "engines": {
-    "node": "10.x",
-    "nmp": "6.x"
   }
 }

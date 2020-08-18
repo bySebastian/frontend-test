@@ -1,29 +1,29 @@
-const path = require("path");
-const webpack = require("webpack");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/Index.js",
-    target: "node",
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: "App.bundle.js"
-    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/env", "@babel/react"]
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
                     }
-                },
+                ]
             }
         ]
     },
-    stats: {
-        colors: true
-    },
-    devtool: "source-map"
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: "./src/index.html",
+            fileName: "./index.html"
+        })
+    ]
 };
